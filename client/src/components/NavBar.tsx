@@ -1,12 +1,32 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { Link, useNavigate } from "react-router-dom";
+import { logout } from "../requests/auth";
+import { toast } from "react-toastify";
+import { removeUser } from "../store/userSlice";
 
 const NavBar = () => {
   const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogOut = async () => {
+    try {
+      const res = await logout();
+      toast.success(res.message);
+      dispatch(removeUser());
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+      dispatch(removeUser());
+      navigate("/login");
+    }
+  };
   return (
     <div className="navbar bg-base-300 shadow-lg">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">🧑‍💻 DEV MATCH</a>
+        <Link to={"/"} className="btn btn-ghost text-xl">
+          🧑‍💻 DEV MATCH
+        </Link>
       </div>
       {user.emailId && (
         <div className="flex-none gap-2">
@@ -26,16 +46,16 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link to={"/profile"} className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <p onClick={handleLogOut}>Logout</p>
               </li>
             </ul>
           </div>

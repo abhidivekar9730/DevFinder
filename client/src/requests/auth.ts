@@ -46,4 +46,15 @@ const signup = async ({
   }
 };
 
-export { login, signup };
+const logout = async () => {
+  try {
+    const response = await axios.get(`${BASEURL}/logout`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { login, signup, logout };

@@ -14,3 +14,6 @@
 - configure store and the user slice
 - subscribe to store using useSelector
 - use in Navigation bar to show user info
+- adding Login, signup
+- adding the authentication for Each page, not access any page until login
+- adding logout functionality

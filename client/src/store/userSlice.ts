@@ -19,7 +19,14 @@ const userSlice = createSlice({
       return { ...action.payload };
     },
     removeUser: () => {
-      return initialState;
+      return {
+        firstName: "",
+        lastName: "",
+        emailId: "",
+        photoUrl: "",
+        skills: [],
+        about: "",
+      };
     },
   },
 });
