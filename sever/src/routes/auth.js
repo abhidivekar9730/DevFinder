@@ -47,15 +47,22 @@ authRouter.post("/login", async (req, res) => {
 
       const token = await user.getJWT();
 
+      const tokenOption = {
+        httpOnly: true,
+        secure: true, // Set true if using HTTPS
+        sameSite: "None",
+        domain: "localhost",
+      };
+
       // Add the token to cookie and send the response back to the server
-      res.cookie("token", token);
+      res.cookie("token", token, tokenOption);
 
       res.send("Login Successful!!");
     } else {
       res.send("Invalid Credentials");
     }
   } catch (error) {
-    res.status(400).send("Error login the user:" + error.message);
+    res.status(400).send(error.message);
   }
 });
 
