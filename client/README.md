@@ -15,5 +15,5 @@
 - subscribe to store using useSelector
 - use in Navigation bar to show user info
 - adding Login, signup
-- adding the authentication for Each page, not access any page until login
+- adding the authentication for Each page, not access any page until login (if token is not present we navigate to login page)
 - adding logout functionality
