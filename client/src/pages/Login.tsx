@@ -6,12 +6,15 @@ import { login } from "../requests/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ButtonChange from "../components/ButtonChange";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
   const [formData, setFormData] = useState<LoginData>({
-    emailId: "tushar@gmail.com",
-    password: "@Tushar123",
+    emailId: "",
+    password: "",
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +29,8 @@ const Login = () => {
     try {
       const response = await login(formData); // Pass the entire formData object
       toast.success(response.message); // Show success message
+      console.log(response.user);
+      dispatch(addUser(response.user));
       Navigate("/");
     } catch (error: any) {
       // console.log(error);

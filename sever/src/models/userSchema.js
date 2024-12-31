@@ -61,7 +61,7 @@ const userSchema = new mongoose.Schema(
     photoUrl: {
       type: String,
       default:
-        "https://med.gov.bz/wp-content/uploads/2020/08/dummy-profile-pic.jpg",
+        "https://img.freepik.com/free-psd/contact-icon-illustration-isolated_23-2151903337.jpg?t=st=1735671064~exp=1735674664~hmac=c63095042bc4e4fc56703eedfdf526d2cd74be0861aec9130b6e46a03c540297&w=996",
       trim: true,
       validate(value) {
         if (!validator.isURL(value)) {

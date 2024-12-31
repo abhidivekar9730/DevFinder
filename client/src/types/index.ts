@@ -22,3 +22,12 @@ export type InputBoxSignUp = {
   emailId: string;
   password: string;
 };
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  emailId: string;
+  photoUrl: string;
+  about: string;
+  skills: string[];
+}

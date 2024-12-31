@@ -8,6 +8,9 @@
 - create BrowserRouter > Routes > Route =/ Body > Outlet
 - creating login and signup page
 - Install axios
-- Solving CORS Error => add middleware to backend with options    {origin and credentials:true}
+- Solving CORS Error => add middleware to backend with options {origin and credentials:true}
 - sent Request pass with axios request {withcredentials:true}
-
+- Intall React-redux + toolkit => configureStore => provider => create Slice => add reducer
+- configure store and the user slice
+- subscribe to store using useSelector
+- use in Navigation bar to show user info
