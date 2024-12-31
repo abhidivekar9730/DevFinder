@@ -2,7 +2,7 @@ import { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { LoginData } from "../types";
-import login from "../requests/auth";
+import { login } from "../requests/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ButtonChange from "../components/ButtonChange";
@@ -10,8 +10,8 @@ import ButtonChange from "../components/ButtonChange";
 const Login = () => {
   const Navigate = useNavigate();
   const [formData, setFormData] = useState<LoginData>({
-    emailId: "",
-    password: "",
+    emailId: "tushar@gmail.com",
+    password: "@Tushar123",
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,10 +25,11 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await login(formData); // Pass the entire formData object
-      toast.success(response); // Show success message
+      toast.success(response.message); // Show success message
       Navigate("/");
     } catch (error: any) {
-      toast.error(error.response?.data || "Login failed!"); // Show error message
+      // console.log(error);
+      toast.error(error.response?.data?.message || "Login failed!"); // Show error message
     }
   };
 
@@ -57,7 +58,7 @@ const Login = () => {
           // className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
         />
 
-        <ButtonChange text="Don't have an Account ? " navigate="/signups" />
+        <ButtonChange text="Don't have an Account ? " navigate="/signup" />
       </div>
     </div>
   );

@@ -15,3 +15,10 @@ export type LoginData = {
   emailId: string;
   password: string;
 };
+
+export type InputBoxSignUp = {
+  firstName: string;
+  lastName: string;
+  emailId: string;
+  password: string;
+};

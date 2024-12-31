@@ -2,7 +2,7 @@ const NavBar = () => {
   return (
     <div className="navbar bg-base-300 shadow-lg">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">🧑‍💻 DEV TINDER</a>
+        <a className="btn btn-ghost text-xl">🧑‍💻 DEV MATCH</a>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end mx-5">

@@ -54,15 +54,20 @@ authRouter.post("/login", async (req, res) => {
         domain: "localhost",
       };
 
+      const { password, ...userWithoutPassword } = user.toObject();
+
       // Add the token to cookie and send the response back to the server
       res.cookie("token", token, tokenOption);
 
-      res.send("Login Successful!!");
+      res.json({
+        message: "Login Successful!!",
+        user: userWithoutPassword,
+      });
     } else {
-      res.send("Invalid Credentials");
+      res.json({ message: "Invalid Credentials" });
     }
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).json({ message: error.message });
   }
 });
 
