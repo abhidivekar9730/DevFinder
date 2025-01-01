@@ -7,7 +7,7 @@ import { store } from "./store/store";
 
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
-const Feed = lazy(() => import("./pages/Feed"));
+const Feed = lazy(() => import("./pages/FeedPage"));
 const Profile = lazy(() => import("./pages/Profile"));
 
 function App() {

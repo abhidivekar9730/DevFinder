@@ -14,6 +14,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    //@ts-ignore
     addUser: (state, action: PayloadAction<User>) => {
       // Replace the state with the new user data
       return { ...action.payload };

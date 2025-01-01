@@ -28,13 +28,13 @@ const validateEditProfileData = (req) => {
     allowedEditFields.includes(field)
   );
 
-  if (!validator.isURL(req.body.photoUrl)) {
+  if (!validator.isURL(req.user.photoUrl)) {
     throw new Error("Photo URL is not Valid");
   }
-  if (!validator.isLength(req.body.about, { min: 0, max: 75 })) {
+  if (!validator.isLength(req.user.about, { min: 0, max: 75 })) {
     throw new Error("About is very long");
   }
-  if (req.body.skills.length >= 6) {
+  if (req.user.skills.length >= 6) {
     throw new Error("too Much skills");
   }
   return isEditAllowed;

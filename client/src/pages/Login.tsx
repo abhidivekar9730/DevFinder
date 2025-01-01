@@ -29,7 +29,6 @@ const Login = () => {
     try {
       const response = await login(formData); // Pass the entire formData object
       toast.success(response.message); // Show success message
-      console.log(response.user);
       dispatch(addUser(response.user));
       Navigate("/");
     } catch (error: any) {

@@ -19,7 +19,6 @@ export const Body = () => {
         const userData = await fetchUserData();
         dispatch(addUser(userData.user));
       } catch (error: any) {
-        console.log(error);
         toast.error(error.response.data);
         navigate("/login");
       }

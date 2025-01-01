@@ -22,7 +22,22 @@ authRouter.post("/signup", async (req, res) => {
       password: passwordHash,
     });
     const saveData = await user.save();
-    res.send(saveData);
+    const token = await user.getJWT();
+
+    const tokenOption = {
+      httpOnly: true,
+      secure: true, // Set true if using HTTPS
+      sameSite: "None",
+      domain: "localhost",
+    };
+
+    // Add the token to cookie and send the response back to the server
+    res.cookie("token", token, tokenOption);
+
+    res.json({
+      message: "Login Successful!!",
+      user: saveData,
+    });
   } catch (error) {
     res.status(400).send("Error saving the user:" + error.message);
   }

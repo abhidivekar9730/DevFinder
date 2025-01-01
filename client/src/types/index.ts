@@ -29,5 +29,22 @@ export interface User {
   emailId: string;
   photoUrl: string;
   about: string;
+  age?: string;
+  gender?: string;
   skills: string[];
+}
+
+export interface Feed {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  photoUrl: string;
+  age?: string;
+  gender?: string;
+  about: string;
+  skills: string[];
+}
+
+export interface Feeds {
+  feeds: Feed[];
 }
