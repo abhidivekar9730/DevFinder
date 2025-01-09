@@ -3,6 +3,7 @@ export type InputBox = {
   placeholder: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
+  value?: string;
 };
 
 export type ButtonAtt = {
@@ -34,8 +35,10 @@ export interface User {
   skills: string[];
 }
 
+export type EditData = Omit<User, "emailId">;
+
 export interface Feed {
-  _id: string;
+  _id?: string;
   firstName: string;
   lastName: string;
   photoUrl: string;

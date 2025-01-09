@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import { Body } from "./pages/Body";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import Connections from "./pages/Connections";
 
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -24,6 +25,8 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/connections" element={<Connections />} />
+                <Route path="/requests" element={<Connections />} />
               </Route>
             </Routes>
           </Suspense>

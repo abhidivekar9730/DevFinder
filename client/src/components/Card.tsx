@@ -1,12 +1,18 @@
+import { useLocation } from "react-router-dom";
 import { Feed } from "../types";
 
 const Card = ({ user }: { user: Feed }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
-    <div className="card bg-base-300 w-96 md:w-1/2 shadow-lg  h-full text-gray-200">
-      <figure className="pt-5 px-5">
+    <div className="card bg-base-300 w-96 md:w-1/2 shadow-lg h-full text-gray-200">
+      <figure className="pt-5 px-5 min-h-[278px] min-w-[278px]">
         <img
-          className="rounded-md"
-          src={user.photoUrl} // Assuming `user.photoUrl` contains the image URL
+          className="rounded-md object-cover "
+          src={
+            user.photoUrl ||
+            "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg"
+          } // Placeholder URL if no image is provided
           alt="User"
         />
       </figure>
@@ -23,14 +29,18 @@ const Card = ({ user }: { user: Feed }) => {
         <p>{user.about}</p> {/* Render user's about */}
         <div>
           <span className="font-semibold">Skills : </span>
-          {user.skills.map((skill) => (
-            <div className="badge badge-neutral m-1">{skill}</div>
+          {user.skills.map((skill, inde) => (
+            <div className="badge badge-neutral m-1" key={inde}>
+              {skill}
+            </div>
           ))}
         </div>
-        <div className="card-actions justify-center mt-10 mb-6 ">
-          <button className="btn btn-primary">Ignore</button>
-          <button className="btn btn-secondary">Interested</button>
-        </div>
+        {pathname != "/profile" && (
+          <div className="card-actions justify-center mt-10 mb-6 ">
+            <button className="btn btn-primary">Ignore</button>
+            <button className="btn btn-secondary">Interested</button>
+          </div>
+        )}
       </div>
     </div>
   );

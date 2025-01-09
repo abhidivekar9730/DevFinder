@@ -17,3 +17,5 @@
 - adding Login, signup
 - adding the authentication for Each page, not access any page until login (if token is not present we navigate to login page)
 - adding logout functionality
+- edit feature build
+- see all connections

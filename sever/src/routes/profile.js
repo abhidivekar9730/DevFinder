@@ -32,8 +32,8 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
       data: logInUser,
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).send("Error :" + error);
+    const errorMessage = error.message.split(":").pop().trim();
+    res.status(400).send(errorMessage);
   }
 });
 

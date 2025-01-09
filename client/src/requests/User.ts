@@ -12,4 +12,15 @@ const FeedUsers = async () => {
   }
 };
 
-export { FeedUsers };
+const fetchConnections = async () => {
+  try {
+    const response = await axios.get(`${BASEURL}/feed`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { FeedUsers, fetchConnections };

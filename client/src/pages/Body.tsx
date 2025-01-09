@@ -13,17 +13,17 @@ export const Body = () => {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userData = await fetchUserData();
-        dispatch(addUser(userData.user));
-      } catch (error: any) {
-        toast.error(error.response.data);
-        navigate("/login");
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const userData = await fetchUserData();
+      dispatch(addUser(userData.user));
+    } catch (error: any) {
+      toast.error(error.response.data);
+      navigate("/login");
+    }
+  };
 
+  useEffect(() => {
     if (!user.emailId) {
       fetchData();
     }

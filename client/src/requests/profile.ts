@@ -1,5 +1,6 @@
 import axios from "axios";
 import { BASEURL } from "../helper/constant";
+import { EditData } from "../types";
 
 const fetchUserData = async () => {
   try {
@@ -13,4 +14,15 @@ const fetchUserData = async () => {
   }
 };
 
-export { fetchUserData };
+const editProfile = async (profileData: EditData) => {
+  try {
+    const response = await axios.patch(`${BASEURL}/profile/edit`, profileData, {
+      withCredentials: true, // Include cookies for authentication
+    });
+    return response.data;
+  } catch (error: any) {
+    throw error;
+  }
+};
+
+export { fetchUserData, editProfile };

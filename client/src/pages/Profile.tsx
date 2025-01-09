@@ -1,6 +1,11 @@
+import EditProfile from "../components/EditProfile";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <div>
+      <EditProfile />
+    </div>
+  );
 };
 
 export default Profile;

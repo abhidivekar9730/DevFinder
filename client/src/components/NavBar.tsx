@@ -22,7 +22,7 @@ const NavBar = () => {
     }
   };
   return (
-    <div className="navbar bg-base-300 shadow-lg">
+    <div className="navbar bg-base-300 shadow-lg z-50">
       <div className="flex-1">
         <Link to={"/"} className="btn btn-ghost text-xl">
           🧑‍💻 DEV MATCH
@@ -52,7 +52,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to={"/connections"}>Connections</Link>
               </li>
               <li>
                 <p onClick={handleLogOut}>Logout</p>
