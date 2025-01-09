@@ -76,6 +76,7 @@ const EditProfile = () => {
 
       toast.success(response.message); // Show success
       fetchData();
+      navigate("/");
     } catch (error: any) {
       console.log(error);
       toast.error(

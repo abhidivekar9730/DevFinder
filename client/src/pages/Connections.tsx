@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { fetchConnections } from "../requests/User";
-import { Connection } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../store/connectionSlice";
 import { RootState } from "../store/store";

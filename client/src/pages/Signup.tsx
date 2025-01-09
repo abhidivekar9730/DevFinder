@@ -6,9 +6,24 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import ButtonChange from "../components/ButtonChange";
 import { signup } from "../requests/auth";
+import { useDispatch } from "react-redux";
+import { fetchUserData } from "../requests/profile";
+import { addUser } from "../store/userSlice";
 
 const Signup = () => {
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const fetchData = async () => {
+    try {
+      const userData = await fetchUserData();
+      dispatch(addUser(userData.user));
+    } catch (error: any) {
+      toast.error(error.response.data);
+      Navigate("/login");
+    }
+  };
+
   const [formData, setFormData] = useState<InputBoxSignUp>({
     firstName: "",
     lastName: "",
@@ -27,10 +42,11 @@ const Signup = () => {
   const handleLogin = async () => {
     try {
       const response = await signup(formData); // Pass the entire formData object
-      toast.success(response); // Show success message\
-      toast.warn("Login To You Account");
-      Navigate("/login");
+      toast.success(response); // Show success message
+      dispatch(addUser(response.user));
+      Navigate("/profile");
     } catch (error: any) {
+      console.log(error);
       toast.error(error.response?.data || "Login failed!"); // Show error message
     }
   };

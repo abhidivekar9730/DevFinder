@@ -8,57 +8,49 @@ import Card from "../components/Card";
 const FeedPage = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store: RootState) => store.feed);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (feed.feeds.length !== 0) return; // Prevent fetching if feed is already populated
+      if (feed.feeds.length > 0) return; // Prevent fetching if feeds are already populated
+      setLoading(true);
       try {
         const data = await FeedUsers(); // Assume this fetches `User[]`
         dispatch(addFeed(data.users)); // Dispatch action to add sanitized users to the Redux store
       } catch (error) {
         console.error("Error fetching feeds:", error);
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchData();
-  }, [dispatch, feed.feeds.length]);
+  }, [dispatch, feed.feeds.length]); // Dependencies ensure correct behavior
 
-  const showNextCard = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % feed.feeds.length);
-  };
-
-  const showPreviousCard = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + feed.feeds.length) % feed.feeds.length
-    );
-  };
-
-  if (feed.feeds.length === 0) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <span className="loading loading-dots loading-lg"></span>{" "}
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (!loading && feed.feeds.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>No User Found..</p>
       </div>
     );
   }
 
   return (
     <div
-      className="flex flex-col justify-center items-center "
+      className="flex flex-col justify-center items-center"
       style={{ height: "calc(100vh - 120.5px)" }}
     >
-      {/* Display only one card */}
       <div className="flex justify-center items-center">
-        <Card user={feed.feeds[3]} />
+        {feed.feeds.length > 0 && <Card user={feed.feeds[0]} />}
       </div>
-
-      {/* <div className="mt-5 flex justify-between w-full max-w-sm">
-        <button onClick={showPreviousCard} className="btn btn-secondary">
-          Previous
-        </button>
-        <button onClick={showNextCard} className="btn btn-primary">
-          Next
-        </button>
-      </div> */}
     </div>
   );
 };

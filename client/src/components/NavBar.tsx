@@ -7,6 +7,8 @@ import { removeUser } from "../store/userSlice";
 
 const NavBar = () => {
   const user = useSelector((state: RootState) => state.user);
+  const requestCount = useSelector((state: RootState) => state.requests.length);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogOut = async () => {
@@ -53,6 +55,13 @@ const NavBar = () => {
               </li>
               <li>
                 <Link to={"/connections"}>Connections</Link>
+              </li>
+
+              <li>
+                <Link to={"/requests"}>
+                  Requests
+                  <span className="badge badge-info">{requestCount}</span>
+                </Link>
               </li>
               <li>
                 <p onClick={handleLogOut}>Logout</p>

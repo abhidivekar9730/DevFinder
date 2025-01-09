@@ -9,6 +9,7 @@ requestRouter.post(
   userAuth,
   async (req, res) => {
     try {
+      console.log(req.params);
       const fromUserId = req.user._id;
       const toUserId = req.params.toUserId;
       const status = req.params.status;
@@ -64,6 +65,7 @@ requestRouter.post(
   "/request/review/:status/:requestId",
   userAuth,
   async (req, res) => {
+    console.log(req.params);
     try {
       const loggedInUser = req.user;
       const { status, requestId } = req.params;

@@ -19,3 +19,4 @@
 - adding logout functionality
 - edit feature build
 - see all connections
+- add the requests page

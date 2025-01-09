@@ -1,9 +1,22 @@
 import { useLocation } from "react-router-dom";
 import { Feed } from "../types";
+import { sendRequest } from "../requests/User";
+import { useDispatch } from "react-redux";
+import { removeFeed } from "../store/FeedSlice";
 
 const Card = ({ user }: { user: Feed }) => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  console.log(pathname);
+
+  const handleRequest = async (userId: string, status: string) => {
+    try {
+      await sendRequest(userId, status);
+      dispatch(removeFeed(userId));
+    } catch (error) {
+      console.error("Error accepting request:", error);
+    }
+  };
+
   return (
     <div className="card bg-base-300 w-96 md:w-1/2 shadow-lg h-full text-gray-200">
       <figure className="pt-5 px-5 min-h-[278px] min-w-[278px]">
@@ -37,8 +50,20 @@ const Card = ({ user }: { user: Feed }) => {
         </div>
         {pathname != "/profile" && (
           <div className="card-actions justify-center mt-10 mb-6 ">
-            <button className="btn btn-primary">Ignore</button>
-            <button className="btn btn-secondary">Interested</button>
+            <button
+              className="btn btn-primary"
+              //@ts-ignore
+              onClick={() => handleRequest(user._id, "ignored")}
+            >
+              Ignore
+            </button>
+            <button
+              className="btn btn-secondary"
+              //@ts-ignore
+              onClick={() => handleRequest(user._id, "interested")}
+            >
+              Interested
+            </button>
           </div>
         )}
       </div>

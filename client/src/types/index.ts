@@ -55,3 +55,17 @@ export type Connection = Omit<User, "emailId"> & {
 export interface Feeds {
   feeds: Feed[];
 }
+
+export type Requests = {
+  _id: string;
+  fromUserId: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    photoUrl: string;
+    about: string;
+    skills: string[];
+  };
+  toUserId: string;
+  status: string;
+};
