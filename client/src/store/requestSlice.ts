@@ -7,6 +7,7 @@ const requestSlice = createSlice({
   name: "Request",
   initialState,
   reducers: {
+    //@ts-ignore
     addRequest: (state, action: PayloadAction<Requests[]>) => {
       return action.payload; // Overwrites the state with new connections
     },
