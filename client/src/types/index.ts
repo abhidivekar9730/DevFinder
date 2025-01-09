@@ -48,6 +48,10 @@ export interface Feed {
   skills: string[];
 }
 
+export type Connection = Omit<User, "emailId"> & {
+  _id: string;
+};
+
 export interface Feeds {
   feeds: Feed[];
 }

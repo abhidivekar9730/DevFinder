@@ -14,7 +14,7 @@ const FeedUsers = async () => {
 
 const fetchConnections = async () => {
   try {
-    const response = await axios.get(`${BASEURL}/feed`, {
+    const response = await axios.get(`${BASEURL}/user/connections`, {
       withCredentials: true,
     });
     return response.data;
