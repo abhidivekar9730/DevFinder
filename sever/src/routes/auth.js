@@ -65,7 +65,6 @@ authRouter.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true, // Set true if using HTTPS
         sameSite: "None",
-        domain: "localhost",
       };
 
       const { password, ...userWithoutPassword } = user.toObject();
