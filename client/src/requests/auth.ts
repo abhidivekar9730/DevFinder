@@ -36,7 +36,6 @@ const signup = async ({
       },
       { withCredentials: true }
     );
-    console.log("Login successful:", response);
     return response.data;
   } catch (error) {
     console.error("Error during login:", error);

@@ -71,14 +71,12 @@ const EditProfile = () => {
 
   const handleEditProfile = async () => {
     try {
-      console.log(formData);
       const response = await editProfile(formData); // Pass the entire formData object
 
       toast.success(response.message); // Show success
       fetchData();
       navigate("/");
     } catch (error: any) {
-      console.log(error);
       toast.error(
         error.response?.data?.message ||
           "Something went wrong while editing the profile."
