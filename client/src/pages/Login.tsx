@@ -1,6 +1,5 @@
 import { useState } from "react";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../components/Input";import Button from "../components/Button";
 import { LoginData } from "../types";
 import { login } from "../requests/auth";
 import { toast } from "react-toastify";
@@ -38,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto mt-16 p-8 shadow-lg rounded-xl bg-base-300">
+    <div className="w-80  md:max-w-md mx-auto mt-16 p-8 shadow-lg rounded-xl bg-base-300">
       <div className="flex flex-col items-center space-y-6">
         <h2 className="text-2xl font-bold text-gray-500 mb-4">Login</h2>
 
