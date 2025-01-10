@@ -30,7 +30,7 @@ const NavBar = () => {
         </Link>
       </div>
       {user.emailId && (
-        <div className="flex-none gap-2">
+        <div className="flex-none">
           <p>Hello, {user.firstName}</p>
           <div className="dropdown dropdown-end mx-5">
             <div
