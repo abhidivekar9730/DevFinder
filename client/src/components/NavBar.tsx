@@ -32,7 +32,7 @@ const NavBar = () => {
       {user.emailId && (
         <div className="flex-none">
           <p>Hello, {user.firstName}</p>
-          <div className="dropdown dropdown-end mx-5">
+          <div className="dropdown dropdown-end m-3 mr-5">
             <div
               tabIndex={0}
               role="button"
