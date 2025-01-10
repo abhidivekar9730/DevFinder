@@ -41,7 +41,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-80 md:max-w-md mx-auto m-8 p-8 shadow-lg rounded-xl bg-base-300">
+    <div className="w-80 md:max-w-md mx-auto mt-8 mb-16 p-8 shadow-lg rounded-xl bg-base-300">
       <div className="flex flex-col items-center space-y-6">
         <h2 className="text-2xl font-bold text-gray-500 mb-4">
           Sign Up To DEV MATCH
