@@ -61,7 +61,7 @@ const Login = () => {
           // className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
         />
 
-        <ButtonChange text="Don't have an Account ? " navigate="/signup" />
+        <ButtonChange text="Don't have an Account ? " navigate="/signup" text2="Sign Up"/>
       </div>
     </div>
   );
