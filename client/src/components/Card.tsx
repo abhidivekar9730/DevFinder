@@ -18,7 +18,7 @@ const Card = ({ user }: { user: Feed }) => {
   };
 
   return (
-    <div className="card bg-base-300 w-96 md:w-1/2 shadow-lg h-full text-gray-200">
+    <div className="card bg-base-300 w-80 md:w-1/2 shadow-lg h-full text-gray-200 mx-auto">
       <figure className="pt-5 px-5 min-h-[278px] min-w-[278px]">
         <img
           className="rounded-md object-cover "
