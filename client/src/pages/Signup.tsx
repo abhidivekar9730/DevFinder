@@ -80,7 +80,7 @@ const Signup = () => {
           // className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
         />
 
-        <ButtonChange text="Already have an Account ? " navigate="/login" />
+        <ButtonChange text="Already have an Account ? " navigate="/login" text2="Login" />
       </div>
     </div>
   );
