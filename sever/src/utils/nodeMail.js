@@ -3,17 +3,17 @@ const nodemailer = require("nodemailer");
 // Create a transporter with connection pooling and rate limiting
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // Use TLS
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  pool: true, // Use connection pooling
-  maxConnections: 5, // Maximum number of connections in the pool
-  maxMessages: 100, // Maximum number of messages per connection
-  rateDelta: 1000, // Time span for rate limit (in milliseconds)
-  rateLimitCount: 5, // Maximum number of messages in the time span
+  tls: {
+    rejectUnauthorized: false,
+  },
+  logger: true, // Enable logging
+  debug: true, // Enable debugging
 });
 
 // Verify transporter connection once at the start
