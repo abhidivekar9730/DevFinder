@@ -61,14 +61,14 @@ const Requests = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center my-10 w-full">
+    <div className="flex flex-col items-center justify-center my-10 w-full ">
       <h1 className="font-bold text-2xl mb-6">Connections</h1>
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full px-4 ">
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full px-2 ">
         {requests.map((request) => (
           <div
             key={request._id}
-            className="card card-side bg-base-200 shadow-lg rounded-lg overflow-hidden flex items-center  p-2 px-9"
+            className="card card-side bg-base-200 shadow-lg rounded-lg overflow-hidden flex items-center justify-center p-2 px-9"
           >
             <img
               src={
@@ -76,7 +76,7 @@ const Requests = () => {
                 "https://via.placeholder.com/150?text=No+Image"
               }
               alt="User"
-              className="w-28 h-28 rounded-lg object-cover border border-gray-300"
+              className="max-w-28 max-h-28 rounded-lg object-cover border border-gray-300 ml-4"
             />
 
             <div className="card-body ml-7">

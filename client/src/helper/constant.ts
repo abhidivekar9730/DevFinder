@@ -1,1 +1,1 @@
-export const BASEURL: string = "https://dev-tinder-back.vercel.app";
+export const BASEURL: string = "http://localhost:3000";

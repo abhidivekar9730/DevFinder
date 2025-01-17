@@ -41,19 +41,21 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-80 md:max-w-md mx-auto mt-8 mb-16 p-8 shadow-lg rounded-xl bg-base-300">
+    <div className="w-96 md:max-w-md mx-auto mt-8 mb-16 p-8 shadow-lg rounded-xl bg-base-300">
       <div className="flex flex-col items-center space-y-3">
         <h2 className="text-2xl font-bold text-gray-500 mb-4">
           Sign Up To DEV MATCH
         </h2>
 
         <Input
+          type="text"
           label="First Name"
           placeholder="Enter your First Name"
           onChange={handleInputChange}
           name="firstName"
         />
         <Input
+          type="text"
           label="Last Name"
           placeholder="Enter your Last Name"
           onChange={handleInputChange}
@@ -61,6 +63,7 @@ const Signup = () => {
         />
 
         <Input
+          type="text"
           label="Email"
           placeholder="Enter your Email"
           onChange={handleInputChange}
@@ -68,6 +71,7 @@ const Signup = () => {
         />
 
         <Input
+          type="password"
           label="Password"
           placeholder="Enter your Password"
           onChange={handleInputChange}
@@ -80,7 +84,11 @@ const Signup = () => {
           // className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
         />
 
-        <ButtonChange text="Already have an Account ? " navigate="/login" text2="Login" />
+        <ButtonChange
+          text="Already have an Account ? "
+          navigate="/login"
+          text2="Login"
+        />
       </div>
     </div>
   );

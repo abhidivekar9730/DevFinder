@@ -54,4 +54,66 @@ const logout = async () => {
   }
 };
 
-export { login, signup, logout };
+const forgetPassword = async ({ emailId }: { emailId: string }) => {
+  try {
+    const response = await axios.post(
+      `${BASEURL}/forget`,
+      { emailId },
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const otpverify = async ({
+  emailId,
+  otpNumber,
+}: {
+  emailId: string;
+  otpNumber: string;
+}) => {
+  try {
+    const response = await axios.post(
+      `${BASEURL}/otpverify`,
+      { emailId, otpNumber },
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const resetPassword = async ({
+  token,
+  password,
+}: {
+  token: string | undefined;
+  password: string;
+}) => {
+  try {
+    const response = await axios.post(
+      `${BASEURL}/reset/${token}`,
+      { resetPassword: password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data; // Return the response data
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message || "Failed to reset password!"
+    );
+  }
+};
+
+export { login, signup, logout, forgetPassword, otpverify, resetPassword };

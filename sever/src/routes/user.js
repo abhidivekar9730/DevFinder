@@ -78,15 +78,23 @@ userRouter.get("/feed", userAuth, async (req, res) => {
       hideUsersFromFeed.add(req.toUserId);
     });
 
-    const users = await User.find({
-      $and: [
-        { _id: { $nin: Array.from(hideUsersFromFeed) } },
-        { _id: { $ne: loggedInUser._id } },
-      ],
-    })
-      .select(USE_SAFE_DATA)
-      .skip(skip)
-      .limit(limit);
+    // Use aggregation with $sample to get random users
+    const users = await User.aggregate([
+      {
+        $match: {
+          $and: [
+            { _id: { $nin: Array.from(hideUsersFromFeed) } },
+            { _id: { $ne: loggedInUser._id } },
+          ],
+        },
+      },
+      {
+        $sample: { size: limit }, // Randomly select users
+      },
+      {
+        $skip: skip, // Skip to the correct page
+      },
+    ]);
 
     res.json({ total: users.length, users: users });
   } catch (error) {

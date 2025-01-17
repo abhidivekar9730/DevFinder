@@ -4,6 +4,8 @@ import { lazy, Suspense } from "react";
 import { Body } from "./pages/Body";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import Forget from "./pages/Forget";
+import ResetPassword from "./pages/ResetPassword";
 
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
@@ -28,6 +30,8 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/connections" element={<Connections />} />
                 <Route path="/requests" element={<Requests />} />
+                <Route path="/forget" element={<Forget />} />
+                <Route path="/reset/:token" element={<ResetPassword />} />
               </Route>
             </Routes>
           </Suspense>

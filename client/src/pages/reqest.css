@@ -1,0 +1,45 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.card img {
+  max-width: 7rem; /* Restricting the image size */
+  max-height: 7rem;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 1rem;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space evenly */
+  flex-grow: 1; /* Allow body to grow and take up available space */
+}
+
+.card-body .card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card-body .badge {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-body .btn {
+  width: 48%; /* Ensuring the buttons are not too wide */
+  margin-top: 1rem;
+}
+
+.card-body .btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}

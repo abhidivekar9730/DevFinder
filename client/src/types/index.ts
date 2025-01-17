@@ -1,5 +1,5 @@
 export type InputBox = {
-  type: string;
+  type?: string;
   label: string;
   placeholder: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

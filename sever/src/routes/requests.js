@@ -2,6 +2,7 @@ const express = require("express");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequestSchema");
 const User = require("../models/userSchema");
+const { sendEmail } = require("../utils/nodeMail");
 const requestRouter = express.Router();
 
 requestRouter.post(
@@ -50,6 +51,27 @@ requestRouter.post(
 
       const request = await connectionsRequest.save();
 
+      sendEmail(
+        toUser.emailId, // Recipient's email
+        `${req.user.firstName} is interested in You`, // Email subject
+        `Hi ${toUser.firstName},\n\nYou have a new request from ${req.user.firstName} on DevMatch! They are interested in connecting with you. You can view and respond to their request by visiting your profile on DevMatch.\n\nCheck it out here: https://devmatch.tusharshitole.site\n\nBest regards,\nThe DevMatch Team`, // Plain text body
+        `<html>
+          <head><title>New Request Notification</title></head>
+          <body style="font-family: Arial, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px;">
+            <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+              <h2 style="text-align: center; color: #0056b3;">You have a new request on DevMatch!</h2>
+              <p>Hi <strong>${toUser.firstName}</strong>,</p>
+              <p>You have a new request from <strong>${req.user.firstName}</strong> on DevMatch! They are interested in connecting with you.</p>
+              <p style="font-size: 16px; color: #555;">You can view and respond to their request by visiting your profile on DevMatch:</p>
+              <p style="text-align: center;">
+                <a href="https://devmatch.tusharshitole.site/requests" style="background-color: #0056b3; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">View Request</a>
+              </p>
+              <p style="font-size: 14px; color: #777;">Best regards,<br>The DevMatch Team</p>
+            </div>
+          </body>
+        </html>` // HTML body (optional)
+      );
+
       res.json({
         message:
           req.user.firstName + " is " + status + " to " + toUser.firstName,
@@ -65,7 +87,6 @@ requestRouter.post(
   "/request/review/:status/:requestId",
   userAuth,
   async (req, res) => {
-    console.log(req.params);
     try {
       const loggedInUser = req.user;
       const { status, requestId } = req.params;
