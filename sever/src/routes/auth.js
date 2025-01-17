@@ -107,7 +107,9 @@ authRouter.get("/logout", async (req, res) => {
 });
 
 setInterval(() => {
-  otp.pop();
+  if (otp.length > 0) {
+    otp.pop();
+  }
 }, 300000);
 
 authRouter.post("/forget", async (req, res) => {
