@@ -7,7 +7,16 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
-app.use(cors({ origin: ["https://dev-tinder03.vercel.app","https://devmatch.tusharshitole.site"], credentials: true }));
+app.use(
+  cors({
+    origin: [
+      "https://dev-tinder03.vercel.app",
+      "https://devmatch.tusharshitole.site",
+      "http://localhost:5173",
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 

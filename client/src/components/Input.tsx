@@ -6,6 +6,7 @@ const Input: React.FC<InputBox> = ({
   onChange,
   name,
   value,
+  type = "text",
 }) => {
   return (
     <label className="w-full">
@@ -13,7 +14,7 @@ const Input: React.FC<InputBox> = ({
         <span className="block text-sm font-medium text-gray-500">{label}</span>
       </div>
       <input
-        type="text"
+        type={type} // Use the type prop here
         name={name}
         placeholder={placeholder}
         className="w-full p-3 border-2 border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
