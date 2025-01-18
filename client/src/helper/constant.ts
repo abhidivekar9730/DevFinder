@@ -1,4 +1,4 @@
-export const BASEURL: string = "https://devtinder-mbmq.onrender.com";
+export const BASEURL: string = "http://localhost:3000";
 
 // https://devtinder-mbmq.onrender.com
 

@@ -11,7 +11,8 @@ const userAuth = async (req, res, next) => {
       return res.status(401).send("Please Login");
     }
 
-    const decodedObj = await jwt.verify(token, "DEV@Tinder$790");
+    const decodedObj = await jwt.verify(token, process.env.TOKEN_SECRET);
+
 
     const { _id } = decodedObj;
 
@@ -22,10 +23,10 @@ const userAuth = async (req, res, next) => {
     }
 
     req.user = user;
-  
 
     next();
   } catch (error) {
+    console.log(error);
     res.status(400).send("Error : " + error);
   }
 };
