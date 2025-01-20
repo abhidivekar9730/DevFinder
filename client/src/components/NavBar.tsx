@@ -62,6 +62,10 @@ const NavBar = () => {
                   <span className="badge badge-info">{requestCount}</span>
                 </Link>
               </li>
+
+              <li>
+                <Link to={"/premium"}>Premium</Link>
+              </li>
               <li>
                 <p onClick={handleLogOut}>Logout</p>
               </li>

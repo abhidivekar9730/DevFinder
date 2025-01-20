@@ -4,15 +4,16 @@ import { lazy, Suspense } from "react";
 import { Body } from "./pages/Body";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import Forget from "./pages/Forget";
-import ResetPassword from "./pages/ResetPassword";
 
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const Forget = lazy(() => import("./pages/Forget"));
 const Login = lazy(() => import("./pages/Login"));
 const Signup = lazy(() => import("./pages/Signup"));
 const Feed = lazy(() => import("./pages/FeedPage"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Requests = lazy(() => import("./pages/Requests"));
 const Connections = lazy(() => import("./pages/Connections"));
+const Premium = lazy(() => import("./pages/Premium"));
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/requests" element={<Requests />} />
                 <Route path="/forget" element={<Forget />} />
                 <Route path="/reset/:token" element={<ResetPassword />} />
+                <Route path="/premium" element={<Premium />} />
               </Route>
             </Routes>
           </Suspense>
