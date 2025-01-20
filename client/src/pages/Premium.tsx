@@ -94,7 +94,7 @@ const Premium = () => {
             <li>- Blue Tick</li>
             <li>- 6 Months</li>
           </ul>
-          <buttong
+          <button
             className="px-3 py-2 border rounded-lg hover:bg-orange-500 hover:text-white"
             onClick={() => handleBuyClick("gold")}
           >
