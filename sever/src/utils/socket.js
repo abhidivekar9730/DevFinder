@@ -1,5 +1,7 @@
 const socket = require("socket.io");
 const crypto = require("crypto");
+const { Chat } = require("../models/chat");
+const ConnectionRequest = require("../models/connectionRequestSchema");
 
 const getSecretRoomId = ({ userId, id }) => {
   return crypto
@@ -22,13 +24,40 @@ const initializeSocket = (server) => {
   io.on("connection", (socket) => {
     socket.on("joinChat", ({ userId, id }) => {
       const roomId = getSecretRoomId({ userId, id });
-      console.log("joining Romm" + roomId);
       socket.join(roomId);
     });
-    socket.on("sendMessage", ({ firstName, userId, id, text }) => {
-      const roomId = getSecretRoomId({ userId, id });
-      console.log(firstName, text);
-      io.to(roomId).emit("messageReceived", { firstName, text });
+    socket.on("sendMessage", async ({ firstName, userId, id, text }) => {
+      try {
+        const connection = await ConnectionRequest.findOne({
+          $or: [
+            { fromUserId: userId, toUserId: id },
+            { fromUserId: id, toUserId: userId },
+          ],
+          status: "accepted",
+        });
+
+        if (!connection) {
+          return;
+        }
+
+        const roomId = getSecretRoomId({ userId, id });
+        let chat = await Chat.findOne({
+          participants: { $all: [userId, id] },
+        });
+
+        if (!chat) {
+          chat = new Chat({
+            participants: [userId, id],
+            messages: [],
+          });
+        }
+
+        chat.messages.push({ senderId: userId, text });
+        await chat.save();
+        io.to(roomId).emit("messageReceived", { firstName, text });
+      } catch (error) {
+        console.log(error);
+      }
     });
     socket.on("disconnect", () => {});
   });

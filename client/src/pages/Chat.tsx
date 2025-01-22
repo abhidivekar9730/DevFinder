@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { createSocketConnection } from "../helper/constant";
+import { BASEURL, createSocketConnection } from "../helper/constant";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import axios from "axios";
 
 const Chat = () => {
   const { id } = useParams(); // Extract chat room ID from the route
@@ -16,6 +17,25 @@ const Chat = () => {
 
   // Socket reference to ensure a single instance
   const socketRef = useRef<any>(null);
+
+  const fetchChatMessages = async () => {
+    const chat = await axios.get(`${BASEURL}/chat/${id}`, {
+      withCredentials: true,
+    });
+
+    const chatMessages = chat?.data?.messages.map((msg: any) => {
+      return {
+        firstName: msg?.senderId?.firstName,
+        text: msg?.text,
+      };
+    });
+
+    setMessages((prev) => [...prev, ...chatMessages]);
+  };
+
+  useEffect(() => {
+    fetchChatMessages();
+  }, []);
 
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
