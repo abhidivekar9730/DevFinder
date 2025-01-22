@@ -135,6 +135,11 @@ const Chat = () => {
       <div className="bg-bas-100 flex items-center p-4 shadow">
         <input
           type="text"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSendMessage();
+            }
+          }}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           className="flex-1 p-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
