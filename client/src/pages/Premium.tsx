@@ -67,7 +67,7 @@ const Premium = () => {
 
   return (
     <div className="m-10 mt-32">
-      <div className="flex flexg-col w-full md:flex-row ">
+      <div className="flex flex-col w-full md:flex-row ">
         {/* Silver Membership Card */}
         <div className="card bg-base-300 rounded-box grid h-96 flex-grow place-items-center p-2">
           <p className="underline font-bold text-2xl">Silver Membership</p>

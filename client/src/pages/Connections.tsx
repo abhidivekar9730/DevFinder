@@ -3,6 +3,7 @@ import { fetchConnections } from "../requests/User";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../store/connectionSlice";
 import { RootState } from "../store/store";
+import { Link } from "react-router-dom";
 
 const Connections = () => {
   const dispatch = useDispatch();
@@ -72,6 +73,11 @@ const Connections = () => {
               <p className="text-gray-400">
                 {connection.about || "No details available"}
               </p>
+              <Link to={`/chat/${connection._id}`} className="flex justify-end">
+                <button className=" bg-blue-500 text-white text-center py-2 rounded-md font-bold px-4">
+                  Chat
+                </button>
+              </Link>
             </div>
           </div>
         ))}

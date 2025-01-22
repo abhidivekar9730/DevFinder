@@ -1,6 +1,12 @@
-export const BASEURL: string = "https://devtinder-mbmq.onrender.com";
+import io from "socket.io-client";
 
+export const createSocketConnection = () => {
+  return io(BASEURL);
+};
+
+export const BASEURL: string = "http://localhost:3000";
+
+//https://devtinder-mbmq.onrender.com
 //
-// http://localhost:3000
 
 // https://dev-tinder-back.vercel.app

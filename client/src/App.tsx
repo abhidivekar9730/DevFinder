@@ -14,6 +14,7 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Requests = lazy(() => import("./pages/Requests"));
 const Connections = lazy(() => import("./pages/Connections"));
 const Premium = lazy(() => import("./pages/Premium"));
+const Chat = lazy(() => import("./pages/Chat"));
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/forget" element={<Forget />} />
                 <Route path="/reset/:token" element={<ResetPassword />} />
                 <Route path="/premium" element={<Premium />} />
+                <Route path="/chat/:id" element={<Chat />} />
               </Route>
             </Routes>
           </Suspense>

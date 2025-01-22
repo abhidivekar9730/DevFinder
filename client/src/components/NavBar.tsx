@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../requests/auth";
 import { toast } from "react-toastify";
 import { removeUser } from "../store/userSlice";
+import { useEffect, useState } from "react";
+import { fetchRequests } from "../requests/User";
 
 const NavBar = () => {
   const user = useSelector((state: RootState) => state.user);
-  const requestCount = useSelector((state: RootState) => state.requests.length);
+
+  const [requestCount, setRequestCount] = useState(0);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,6 +25,18 @@ const NavBar = () => {
       navigate("/login");
     }
   };
+  useEffect(() => {
+    async function data() {
+      try {
+        const res = await fetchRequests();
+        setRequestCount(res?.data?.length);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    data();
+  }, []);
+
   return (
     <div className="navbar bg-base-300 shadow-lg z-50">
       <div className="flex-1">
