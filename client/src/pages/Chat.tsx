@@ -87,7 +87,10 @@ const Chat = () => {
   }, [userId, id]);
 
   return (
-    <div className="flex flex-col h-screen bg-base-100">
+    <div
+      className="flex flex-col bg-base-100 mx-5"  
+      style={{ height: "calc(100vh - 66px)" }}
+    >
       {/* Chat Header */}
       <div className="bg-base-100 p-4 text-white text-center shadow">
         <h1 className="text-2xl font-bold">Chat Room</h1>
@@ -95,7 +98,7 @@ const Chat = () => {
 
       {/* Chat Messages */}
       {/* Chat Messages */}
-      <div className="overflow-y-auto p-4 bg-base-200 h-[73%]">
+      <div className="overflow-y-auto p-4 bg-base-200 h-[73%] rounded-lg">
         {messages.length === 0 ? (
           <p className="text-center text-white">
             No messages yet. Start the conversation!
