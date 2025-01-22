@@ -6,6 +6,8 @@ import { RootState } from "../store/store";
 import axios from "axios";
 
 const Chat = () => {
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
   const { id } = useParams(); // Extract chat room ID from the route
   const [messages, setMessages] = useState<
     { firstName: string; text: string }[]
@@ -32,6 +34,14 @@ const Chat = () => {
 
     setMessages((prev) => [...prev, ...chatMessages]);
   };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     fetchChatMessages();
@@ -118,6 +128,7 @@ const Chat = () => {
             </div>
           ))
         )}
+        <div ref={messagesEndRef}></div>
       </div>
 
       {/* Chat Input */}
