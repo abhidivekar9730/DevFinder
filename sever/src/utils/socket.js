@@ -14,9 +14,8 @@ const initializeSocket = (server) => {
   const io = socket(server, {
     cors: {
       origin: [
-        "https://dev-tinder03.vercel.app",
-        "https://devmatch.tusharshitole.site",
         "http://localhost:5173",
+        "https://devfinder01.vercel.app"
       ],
     },
   });
@@ -59,7 +58,7 @@ const initializeSocket = (server) => {
         console.log(error);
       }
     });
-    socket.on("disconnect", () => {});
+    socket.on("disconnect", () => { });
   });
 };
 

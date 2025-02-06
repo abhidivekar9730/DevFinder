@@ -29,7 +29,6 @@ const userRouter = require("./routes/user");
 const paymentRouter = require("./routes/payment");
 const initializeSocket = require("./utils/socket");
 const chatRouter = require("./routes/chat");
-const { connect } = require("http2");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
@@ -37,7 +36,7 @@ app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", paymentRouter);
 app.use("/", chatRouter);
-app.use("/",(res,req)=>res.json({"hello":"hello"}))
+app.use("/", (res, req) => res.json({ "hello": "hello" }))
 
 const server = http.createServer(app);
 
@@ -47,8 +46,8 @@ connectDB()
   .then(() => {
     console.log("Database connection established...");
   })
-  .then(()=>{
-    server.listen(3000,()=>console.log("Start at 3000"))
+  .then(() => {
+    server.listen(3000, () => console.log("Start at 3000"))
   })
   .catch((err) => {
     console.error("Database connect be connected");
