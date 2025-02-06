@@ -1,8 +1,8 @@
-import { useLocation } from "react-router-dom";
-import { Feed } from "../types";
-import { sendRequest } from "../requests/User";
-import { useDispatch } from "react-redux";
-import { removeFeed } from "../store/FeedSlice";
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { removeFeed } from '../store/FeedSlice';
+import { sendRequest } from '../requests/User';
+import { Feed } from '../types';
 
 const Card = ({ user }: { user: Feed }) => {
   const dispatch = useDispatch();
@@ -18,49 +18,63 @@ const Card = ({ user }: { user: Feed }) => {
   };
 
   return (
-    <div className="card bg-base-300 w-80 md:w-1/2 shadow-lg h-full text-gray-200 mx-auto">
-      <figure className="pt-5 px-5 min-h-[278px] min-w-[278px]">
+    <div className="w-full max-w-sm mx-auto bg-base-300 p-4 px-6 text-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-[1.02] hover:shadow-xl">
+      {/* Image Container with fixed aspect ratio */}
+      <div className="relative w-full pt-[100%] overflow-hidden">
         <img
-          className="rounded-md object-cover "
-          src={
-            user.photoUrl ||
-            "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg"
-          } // Placeholder URL if no image is provided
-          alt="User"
+          className="absolute inset-0 w-full h-full object-cover rounded-t-xl"
+          src={user.photoUrl || "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400&h=400&fit=crop"}
+          alt={`${user.firstName} ${user.lastName}`}
         />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title text-gray-200 font-bold">
-          {user.firstName} {user.lastName}
-        </h2>
-        {user.age && (
-          <p>
-            {user.age}, {user.gender}
+      </div>
+
+      <div className="p-4 space-y-4">
+        {/* Name and Age Section */}
+        <div>
+          <h2 className="text-2xl font-bold text-white">
+            {user.firstName} {user.lastName}
+          </h2>
+          {user.age && (
+            <p className="text-gray-400 mt-1">
+              {user.age}, {user.gender}
+            </p>
+          )}
+        </div>
+
+        {/* About Section */}
+        {user.about && (
+          <p className="text-gray-400 leading-relaxed">
+            {user.about}
           </p>
         )}
-        {/* Render user's name */}
-        <p>{user.about}</p> {/* Render user's about */}
-        <div>
-          <span className="font-semibold">Skills : </span>
-          {user.skills.map((skill, inde) => (
-            <div className="badge badge-neutral m-1" key={inde}>
-              {skill}
-            </div>
-          ))}
+
+        {/* Skills Section */}
+        <div className="space-y-2">
+          <h3 className="font-semibold text-gray-400">Skills</h3>
+          <div className="flex flex-wrap gap-2 max-h-20 overflow-y-auto">
+            {user.skills.map((skill, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full font-medium transition-all duration-200 hover:bg-gray-200 hover:text-gray-900 hover:border-b-2 hover:border-blue-600"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
         </div>
-        {pathname != "/profile" && (
-          <div className="card-actions justify-center mt-10 mb-6 ">
+
+        {/* Action Buttons */}
+        {pathname !== "/profile" && (
+          <div className="flex gap-3 pt-4">
             <button
-              className="btn btn-primary"
-              //@ts-ignore
-              onClick={() => handleRequest(user._id, "ignored")}
+              onClick={() => handleRequest(user._id || "", "ignored")}
+              className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors hover:bg-gray-300"
             >
               Ignore
             </button>
             <button
-              className="btn btn-secondary"
-              //@ts-ignore
-              onClick={() => handleRequest(user._id, "interested")}
+              onClick={() => handleRequest(user._id || "", "interested")}
+              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium transition-colors hover:bg-blue-700"
             >
               Interested
             </button>

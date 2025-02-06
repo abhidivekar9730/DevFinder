@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 const { sendEmail } = require("../utils/nodeMail");
 const jwt = require("jsonwebtoken");
-const { run } = require("../utils/sendEmail");
 
 const authRouter = express.Router();
 
@@ -25,14 +24,11 @@ authRouter.post("/signup", async (req, res) => {
       emailId,
       password: passwordHash,
     });
+
     const saveData = await user.save();
     const token = await user.getJWT();
 
-    const eamilRes = await run(
-      `Created Account by ${firstName}`,
-      `<h1>${emailId}</h1>`,
-      "Succssfully Done create an account...."
-    );
+    const sendNewUser = sendEmail(process.env.EMAIL_USER, `${user.firstName} has Created Account Recently`, `<h1>${user.emailId} has Created Account...!</h1>`)
 
     const tokenOption = {
       httpOnly: true,

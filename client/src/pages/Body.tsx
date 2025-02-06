@@ -33,7 +33,7 @@ export const Body = () => {
     <div>
       <ToastContainer />
       <NavBar />
-      <Outlet />
+        <Outlet />
       <Footer />
     </div>
   );
