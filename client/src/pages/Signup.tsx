@@ -44,7 +44,7 @@ const Signup = () => {
     <div className="md:max-w-md mx-auto mt-5 mb-16 p-8 shadow-lg rounded-xl bg-base-300">
       <div className="flex flex-col items-center space-y-3">
         <h2 className="text-2xl font-bold text-gray-500 mb-4">
-          Sign Up To DEV MATCH
+          Sign Up To DEV FINDER
         </h2>
 
         <Input
