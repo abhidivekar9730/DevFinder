@@ -10,8 +10,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://dev-tinder03.vercel.app",
-      "https://devmatch.tusharshitole.site",
+      "https://devfinder01.vercel.app"
     ],
     credentials: true,
   })
@@ -38,7 +37,7 @@ app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", paymentRouter);
 app.use("/", chatRouter);
-
+app.use("/",res.send("hello"))
 
 const server = http.createServer(app);
 

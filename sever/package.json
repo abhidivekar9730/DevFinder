@@ -22,6 +22,8 @@
     "mongoose": "^8.7.0",
     "nodemailer": "^6.9.16",
     "razorpay": "^2.9.5",
+    "serve": "^14.2.4",
+    "server": "^1.0.41",
     "socket.io": "^4.8.1",
     "validator": "^13.12.0"
   },
