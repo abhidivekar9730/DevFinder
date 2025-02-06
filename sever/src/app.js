@@ -37,7 +37,7 @@ app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", paymentRouter);
 app.use("/", chatRouter);
-app.use("/",(res,req)=>res.send("hello"))
+app.use("/",(res,req)=>res.json({"hello":"hello"}))
 
 const server = http.createServer(app);
 
