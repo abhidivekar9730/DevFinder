@@ -28,7 +28,56 @@ authRouter.post("/signup", async (req, res) => {
     const saveData = await user.save();
     const token = await user.getJWT();
 
-    const sendNewUser = sendEmail(process.env.EMAIL_USER, `${user.firstName} has Created Account Recently`, `<h1>${user.emailId} has Created Account...!</h1>`)
+    const sendNewUser = sendEmail(process.env.EMAIL_USER, `${user.firstName} has Created Account Recently`, ``,`<!DOCTYPE html>
+<html>
+<head>
+    <title>New Account Created</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        .header {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        .content {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">${user.firstName} has Created an Account</div>
+        <div class="content">
+            <p>The user <strong>${user.emailId}</strong> has recently created an account on our platform.</p>
+            <p>Please review the account details if necessary.</p>
+        </div>
+        <div class="footer">
+            Best regards, <br>
+            Your Team
+        </div>
+    </div>
+</body>
+</html>
+`)
 
     const tokenOption = {
       httpOnly: true,
